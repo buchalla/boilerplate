@@ -1,0 +1,15 @@
+{
+  "unqualified-attributes": false,
+  "universal-selector": false,
+  "overqualified-elements": false,
+  "unique-headings": false,
+  "box-model": false,
+  "floats": false,
+  "regex-selectors": false,
+  "adjoining-classes": false,
+  "box-sizing": false,
+  "font-sizes": false,
+  "vendor-prefix": false,
+  "qualified-headings": false,
+  "compatible-vendor-prefixes": false,
+}
