@@ -1,12 +1,12 @@
 {
   "name": "rd-boiler",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "R&D Boiler",
   "scripts": {
     "test": "echo \"No tests yet\" "
   },
   "browser": {
-    "jQuery": "./public/assets/js/libs/jquery-1.11.3.min.js"
+    "jQuery": "./app/src/js/libs/jquery-1.11.3.min.js"
   },
   "browserify": {
     "trasnform": [
