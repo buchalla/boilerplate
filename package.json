@@ -9,7 +9,7 @@
     "jQuery": "./app/src/js/libs/jquery-1.11.3.min.js"
   },
   "browserify": {
-    "trasnform": [
+    "transform": [
       "browserify-shim"
     ]
   },
