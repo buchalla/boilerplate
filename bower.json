@@ -1,0 +1,24 @@
+{
+  "name": "rd-boiler",
+  "description": "R&D Boiler",
+  "authors": [
+    "Victor Schulze Buchalla"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "rd",
+    "rd-boiler",
+    "boiler",
+    "gulp"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "~2.2.0"
+  }
+}

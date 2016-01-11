@@ -4,6 +4,7 @@ var gulp = require('gulp'),
     poststylus = require('poststylus'),
     rucksack = require('rucksack-css'),
     lost = require('lost'),
+    rupture = require('rupture'),
     autoprefixer = require('autoprefixer-stylus'),
     plugins =  require('gulp-load-plugins')({
         camelize: false
@@ -26,7 +27,7 @@ var tasks = {
             }))
             .pipe(plugins.stylint())
             .pipe(plugins.stylus({
-               use: [poststylus(rucksack), poststylus('lost'), autoprefixer()],
+               use: [poststylus(rucksack), poststylus('lost'), autoprefixer(), rupture()],
                compress: false
             }))
             .pipe(gulp.dest(config.dest + "styles/"));
@@ -47,7 +48,7 @@ var tasks = {
             return bundler.bundle()
             	.on('error', function(err){
             		console.log(err.message);
-      				this.emit('end');
+                    this.emit('end');
             	})
                 .pipe(source("build.js"))
                 .pipe(gulp.dest(config.dest + "js/"));
