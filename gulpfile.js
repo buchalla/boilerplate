@@ -12,7 +12,8 @@ var gulp = require('gulp'),
 
 var config = {
     dev: "app/src/",
-    dest: "public/assets/"
+    dest: "public/assets/",
+    production: false
 };
 
 
@@ -28,7 +29,7 @@ var tasks = {
             .pipe(plugins.stylint())
             .pipe(plugins.stylus({
                use: [poststylus(rucksack), poststylus('lost'), autoprefixer(), rupture()],
-               compress: false
+               compress: config.production
             }))
             .pipe(gulp.dest(config.dest + "styles/"));
     },
@@ -39,7 +40,8 @@ var tasks = {
                 .pipe(plugins.csslint.reporter());
     },
 
-    bundleJs: function(){
+    bundleJs: function(build){
+        build = typeof build === 'undefined' ? false : build;
         var bundler = browserify(config.dev + "js/main.js", {
             debug: true
         });
@@ -51,9 +53,9 @@ var tasks = {
                     this.emit('end');
             	})
                 .pipe(source("build.js"))
+                .pipe(config.production === true ? plugins.streamify(plugins.uglify()) : plugins.util.noop())
                 .pipe(gulp.dest(config.dest + "js/"));
         };
-
         bundler.on("update", rebundle);
 
         return rebundle();
@@ -77,7 +79,11 @@ gulp.task("compileCss", tasks.compileCss);
 gulp.task("bundleJs", tasks.bundleJs);
 gulp.task("lintCss", tasks.lintCss);
 gulp.task("lintJs", tasks.lintJs);
-
+gulp.task("build", function(){
+    config.production = true;
+    tasks.bundleJs();
+    tasks.compileCss();
+});
 gulp.task('default', ['watch']);
 
 gulp.task('watch', ['compileCss', "bundleJs"], function(){

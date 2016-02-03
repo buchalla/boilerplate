@@ -1,7 +1,7 @@
 {
-  "name": "rd-boiler",
-  "version": "1.0.1",
-  "description": "R&D Boiler",
+  "name": "boiler",
+  "version": "1.1.0",
+  "description": "Boiler",
   "scripts": {
     "test": "echo \"No tests yet\" "
   },
@@ -9,18 +9,20 @@
     "jQuery": "./bower_components/jquery/dist/jquery.min.js"
   },
   "browserify": {
-    "transform": [
-      "browserify-shim"
-    ]
+    "transform": ["browserify-shim"]
   },
   "browserify-shim": {
     "jQuery": "$"
   },
   "keywords": [
-    "rd",
-    "rd-boiler",
     "boiler",
-    "gulp"
+    "gulp",
+    "php-boiler",
+    "stylus",
+    "js",
+    "rupture",
+    "browserify",
+    "postcss"
   ],
   "author": "Victor Schulze Buchalla",
   "license": "ISC",
@@ -36,8 +38,10 @@
     "gulp-plumber": "^1.0.1",
     "gulp-postcss": "^6.0.1",
     "gulp-sourcemaps": "^1.6.0",
+    "gulp-streamify": "^1.0.2",
     "gulp-stylint": "^3.0.0",
     "gulp-stylus": "^2.1.0",
+    "gulp-uglify": "^1.5.1",
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5",
     "lost": "^6.6.2",
