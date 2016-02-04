@@ -31,6 +31,8 @@ $ npm install -g gulp bower
 Inside the project folder run.
 ```sh
 $ npm install
+# and
+$ bower install
 ```
 
 ### Tasks
