@@ -57,25 +57,6 @@ var tasks = {
             });
             es.merge(bundles).on("end", done);
         });
-
-        // build = typeof build === 'undefined' ? false : build;
-        // var bundler = browserify(config.dev + "js/main.js", {
-        //     debug: true
-        // });
-
-        // var rebundle = function() {
-        //     return bundler.bundle()
-        //     	.on('error', function(err){
-        //     		console.log(err.message);
-        //             this.emit('end');
-        //     	})
-        //         .pipe(source("build.js"))
-        //         .pipe(config.production === true ? plugins.streamify(plugins.uglify()) : plugins.util.noop())
-        //         .pipe(gulp.dest(config.dest + "js/"));
-        // };
-        // bundler.on("update", rebundle);
-
-        // return rebundle();
     },
 
     lintJs: function(){
