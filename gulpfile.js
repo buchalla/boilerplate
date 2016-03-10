@@ -1,5 +1,7 @@
 var gulp = require('gulp'),
     browserify = require('browserify'),
+    glob = require('glob'),
+    es = require('event-stream'),
     source = require("vinyl-source-stream"),
     poststylus = require('poststylus'),
     rucksack = require('rucksack-css'),
@@ -40,25 +42,40 @@ var tasks = {
                 .pipe(plugins.csslint.reporter());
     },
 
-    bundleJs: function(build){
-        build = typeof build === 'undefined' ? false : build;
-        var bundler = browserify(config.dev + "js/main.js", {
-            debug: true
-        });
+    bundleJs: function(done){
+        glob(config.dev + "js/*.js", function(err, files){
+            if (err) { throw err;}
+            var bundles = files.map(function(file){
+                var bundle = browserify(file, {debug: true})
+                .bundle();
 
-        var rebundle = function() {
-            return bundler.bundle()
-            	.on('error', function(err){
-            		console.log(err.message);
-                    this.emit('end');
-            	})
-                .pipe(source("build.js"))
+                return bundle
+                .pipe(plugins.plumber())
+                .pipe(source(file.replace(config.dev + "js/", "")))
                 .pipe(config.production === true ? plugins.streamify(plugins.uglify()) : plugins.util.noop())
                 .pipe(gulp.dest(config.dest + "js/"));
-        };
-        bundler.on("update", rebundle);
+            });
+            es.merge(bundles).on("end", done);
+        });
 
-        return rebundle();
+        // build = typeof build === 'undefined' ? false : build;
+        // var bundler = browserify(config.dev + "js/main.js", {
+        //     debug: true
+        // });
+
+        // var rebundle = function() {
+        //     return bundler.bundle()
+        //     	.on('error', function(err){
+        //     		console.log(err.message);
+        //             this.emit('end');
+        //     	})
+        //         .pipe(source("build.js"))
+        //         .pipe(config.production === true ? plugins.streamify(plugins.uglify()) : plugins.util.noop())
+        //         .pipe(gulp.dest(config.dest + "js/"));
+        // };
+        // bundler.on("update", rebundle);
+
+        // return rebundle();
     },
 
     lintJs: function(){
@@ -79,10 +96,10 @@ gulp.task("compileCss", tasks.compileCss);
 gulp.task("bundleJs", tasks.bundleJs);
 gulp.task("lintCss", tasks.lintCss);
 gulp.task("lintJs", tasks.lintJs);
-gulp.task("build", function(){
+gulp.task("build", function(done){
     config.production = true;
-    tasks.bundleJs();
-    tasks.compileCss();
+    tasks.bundleJs(done);
+    tasks.compileCss(done);
 });
 gulp.task('default', ['watch']);
 

@@ -6,7 +6,7 @@ var anotherExample = (function (doc, win) {
 
     return{
         method: method
-    }
+    };
 
 })(document, window);
 

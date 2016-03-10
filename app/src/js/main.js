@@ -2,8 +2,8 @@
 * Here we start all modules
 */
 
-var example = require("./module/example");
-var anotherExample = require("./module/anotherExample");
+var example = require("./modules/example");
+var anotherExample = require("./modules/anotherExample");
 anotherExample.method();
 example.go();
 console.log('And here we have jQuery', $)
