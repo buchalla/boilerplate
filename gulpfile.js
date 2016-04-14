@@ -69,6 +69,16 @@ var tasks = {
         	.pipe(plugins.plumber())
             .pipe(plugins.jshint())
             .pipe(plugins.jshint.reporter('default'));
+    },
+
+    optimizeImages: function(){
+        return gulp.src(config.dev + "images/**/*.*")
+        .pipe(plugins.imagemin({
+            progressive: true,
+            optimizationLevel: 7,
+            multipass: true
+        }))
+        .pipe(gulp.dest(config.dest + 'images/'));
     }
 };
 
@@ -77,10 +87,12 @@ gulp.task("compileCss", tasks.compileCss);
 gulp.task("bundleJs", tasks.bundleJs);
 gulp.task("lintCss", tasks.lintCss);
 gulp.task("lintJs", tasks.lintJs);
+gulp.task("optimizeImages", tasks.optimizeImages);
 gulp.task("build", function(done){
     config.production = true;
     tasks.bundleJs(done);
-    tasks.compileCss(done);
+    tasks.compileCss();
+    tasks.optimizeImages();
 });
 gulp.task('default', ['watch']);
 

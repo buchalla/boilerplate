@@ -1,1 +1,68 @@
-@charset "utf-8";.main-title{font-size:32px;color:#262626}.font-responsive{font-size:calc(12px + 9 * ((100vw - 420px) / 860))}@media screen and (min-width: 1280px){.font-responsive{font-size:21px}}@media screen and (max-width: 420px){.font-responsive{font-size:12px}}.grid{height:150px;width:calc(99.99% * 1/3 - (30px - 30px * 1/3))}.grid:nth-child(n){float:left;margin-right:30px;clear:none}.grid:last-child{margin-right:0}.grid:nth-child(3n){margin-right:0}.grid:nth-child(3n + 1){clear:left}section{*zoom:1}section:before{content:'';display:table}section:after{content:'';display:table;clear:both}.block{background-color:#99f;position:relative;}.block-inside{background-color:#33f;height:50px;left:50%;position:absolute;top:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);width:50px;text-align:center;line-height:47px}
+@charset "utf-8";
+/*
+* Here we requrie all modules and configs
+*/
+.main-title {
+  font-size: 32px;
+  color: #262626;
+}
+.font-responsive {
+  font-size: calc(12px + 9 * ((100vw - 420px) / 860));
+}
+@media screen and (min-width: 1280px){
+  .font-responsive{
+    font-size: 21px;
+  }
+}
+@media screen and (max-width: 420px){
+  .font-responsive{
+    font-size: 12px;
+  }
+}
+.grid {
+  height: 150px;
+  width: calc(99.99% * 1/3 - (30px - 30px * 1/3));
+}
+.grid:nth-child(1n){
+  float: left;
+  margin-right: 30px;
+  clear: none;
+}
+.grid:last-child{
+  margin-right: 0;
+}
+.grid:nth-child(3n){
+  margin-right: 0;
+  float: right;
+}
+.grid:nth-child(3n + 1){
+  clear: left;
+}
+section {
+  *zoom: 1;
+}
+section:before{
+  content: '';
+  display: table;
+}
+section:after{
+  content: '';
+  display: table;
+  clear: both;
+}
+.block {
+  background-color: #99f;
+  position: relative;
+}
+.block-inside {
+  background-color: #33f;
+  height: 50px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 50px;
+  text-align: center;
+  line-height: 47px;
+}
